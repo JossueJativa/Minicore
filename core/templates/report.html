@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block body %}
+{% if error %}
+<div class="alert alert-danger" role="alert">
+    {{ error }}
+</div>
+
+{% endif %}
+<form action="{% url 'core:report' %}" method="post">
+    {% csrf_token %}
+    <div class="input-group mb-2">
+        <span class="input-group-text">Fecha de inicio</span>
+        <input type="date" name="first_date" id="first_date" class="form-control">
+    </div>
+    <div class="input-group mb-2">
+        <span class="input-group-text">Fecha de final</span>
+        <input type="date" name="last_date" id="last_date" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Buscar</button>
+</form>
+
+{% if sales %}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">client name</th>
+            <th scope="col">product</th>
+            <th scope="col">Price</th>
+            <th scope="col">Fecha de compra</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for sale in sales %}
+            <tr>
+                <th>{{ sale.id }}</th>
+                <td>{{ sale.client.name }}</td>
+                <td>{{ sale.product }}</td>
+                <td>{{ sale.price }}</td>
+                <td>{{ sale.creatin_date }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+{% endblock %}
