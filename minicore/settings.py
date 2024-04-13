@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import dj_database_url
 import os
+import ast
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,7 +28,15 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS')
+# Obtener el valor de ALLOWED_HOSTS del entorno
+allowed_hosts = os.environ.get('ALLOWED_HOSTS')
+
+# Si ALLOWED_HOSTS está definido en el entorno, conviértelo a una lista
+if allowed_hosts:
+    ALLOWED_HOSTS = ast.literal_eval(allowed_hosts)
+else:
+    # Si no está definido, utiliza una lista vacía como valor predeterminado
+    ALLOWED_HOSTS = []
 
 
 # Application definition
