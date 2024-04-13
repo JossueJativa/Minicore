@@ -34,6 +34,7 @@ allowed_hosts = os.environ.get('ALLOWED_HOSTS')
 # Si ALLOWED_HOSTS está definido en el entorno, conviértelo a una lista
 if allowed_hosts:
     ALLOWED_HOSTS = ast.literal_eval(allowed_hosts)
+    print(ALLOWED_HOSTS)
 else:
     # Si no está definido, utiliza una lista vacía como valor predeterminado
     ALLOWED_HOSTS = []
