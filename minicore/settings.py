@@ -29,15 +29,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 
 # Obtener el valor de ALLOWED_HOSTS del entorno
-allowed_hosts = os.environ.get('ALLOWED_HOSTS')
-
-# Si ALLOWED_HOSTS está definido en el entorno, conviértelo a una lista
-if allowed_hosts:
-    ALLOWED_HOSTS = ast.literal_eval(allowed_hosts)
-    print(ALLOWED_HOSTS)
-else:
-    # Si no está definido, utiliza una lista vacía como valor predeterminado
-    ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'minicore-yy5y.onrender.com',
+    'localhost',
+]
+    
 
 
 # Application definition
