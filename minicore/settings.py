@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
+import dj_database_url
 
 from pathlib import Path
 
@@ -82,6 +83,8 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+DATABASES['default'] = dj_database_url.parse("postgres://minicore_dppr_user:jGhhhEYn5Fw15Dq42AOQ6iE1LwUuo4Nk@dpg-codg7p8l5elc73fnlhp0-a/minicore_dppr")
 
 
 # Password validation
